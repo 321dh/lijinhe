@@ -1,0 +1,30 @@
+1、设置姓名和Email
+$ git config --global user.name "Jorly"
+$ git config --global user.email "lijinhe@321dh.com"
+
+2、设置行尾首选项
+	1)Unix/Mac 用户：
+		$ git config --global core.autocrlf input
+		$ git config --global core.safecrlf true
+
+	2)Windows 用户：
+		$ git config --global core.autocrlf true
+		$ git config --global core.safecrlf true
+
+3、创建代码仓库
+$ mkdir gitproject
+$ cd gitproject
+$ git init
+
+这时git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，可通过ls -ah查看。
+
+4、添加文件并提交到git仓库
+$ touch git.txt
+$ vi git.txt
+添加以下内容并用wq保存：
+	Git is a version control system.
+	Git is free software.
+添加文件到版本库	
+$ git add git.txt
+
+
