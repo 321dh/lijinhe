@@ -35,7 +35,7 @@ $ vi git.txt
 添加以下内容并用wq保存：
 	Git is a version control system.
 	Git is free software.
-添加文件到仓库	
+添加文件到仓库暂存区（如果不add添加，在提交时将不会被提交）	
 $ git add git.txt
 把文件提交到git仓库
 $ git commit -m "添加一个git命令文件"
@@ -57,5 +57,26 @@ $ git reset --hard HEAD^
 2）HEAD^ 表示上个版本
 3）HEAD^^ 表示上上个版本
 4）HEAD~100 表示100个版本
+5）回到指定版本号 git reset --hard 版本号
+如果回退之后还想恢复到最新版本，后添加最新版本号
+$ git reset --hard b1f19dcf3e83436b13b00aee9dc7b59d103f3f8b
 
+9、查看每次使用的命令
+$ git reflog
+
+10、丢弃工作区的修改
+$ git checkout -- 文件名（没有--，就变成了“切换到另一个分支”的命令）
+
+11、把暂存区的修改回退到工作区
+$ git reset HEAD readme.txt
+
+撤销修改小结
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+12、从版本库中删除文件
+$ git rm test.txt
+$ git commit -m "remove test.txt"
+rm 只是把文件从本地删除，如果误删则用git checkout -- test.txt进行恢复。
 
