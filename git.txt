@@ -1,3 +1,14 @@
+svn操作符简写
+A：add，新增
+C：conflict，冲突
+D：delete，删除
+M：modify，本地已经修改
+G：modify and merGed，本地文件修改并且和服务器的进行合并
+U：update，从服务器更新
+R：replace，从服务器替换
+I：ignored，忽略
+
+git操作命令
 1、设置姓名和Email
 $ git config --global user.name "Jorly"
 $ git config --global user.email "lijinhe@321dh.com"
@@ -34,3 +45,17 @@ $ git status
 
 6、比较文件不同
 $ git diff git.txt
+
+7、查看log日志
+$ git log
+如果感觉输出信息太多，可用
+$ git log --pretty=oneline
+
+8、回到某个版本
+$ git reset --hard HEAD^
+1）HEAD 表示当前版本
+2）HEAD^ 表示上个版本
+3）HEAD^^ 表示上上个版本
+4）HEAD~100 表示100个版本
+
+
