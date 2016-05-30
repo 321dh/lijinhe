@@ -24,7 +24,13 @@ $ vi git.txt
 添加以下内容并用wq保存：
 	Git is a version control system.
 	Git is free software.
-添加文件到版本库	
+添加文件到仓库	
 $ git add git.txt
+把文件提交到git仓库
+$ git commit -m "添加一个git命令文件"
 
+5、检查仓库的状态
+$ git status
 
+6、比较文件不同
+$ git diff git.txt
