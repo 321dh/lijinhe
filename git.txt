@@ -57,7 +57,7 @@ $ git reset --hard HEAD^
 2）HEAD^ 表示上个版本
 3）HEAD^^ 表示上上个版本
 4）HEAD~100 表示100个版本
-5）回到指定版本号 git reset --hard 版本号
+5）回退到指定版本号 git reset --hard 版本号
 如果回退之后还想恢复到最新版本，后添加最新版本号
 $ git reset --hard b1f19dcf3e83436b13b00aee9dc7b59d103f3f8b
 
@@ -80,3 +80,15 @@ $ git rm test.txt
 $ git commit -m "remove test.txt"
 rm 只是把文件从本地删除，如果误删则用git checkout -- test.txt进行恢复。
 
+13、创建SSH Key
+$ ssh-keygen -t rsa -C "lijinhe@321dh.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/Jorly/.ssh/id_rsa):（确认密钥存储位置）
+Created directory '/c/Users/Jorly/.ssh'.
+Enter passphrase (empty for no passphrase):(输入密钥口令)
+Enter same passphrase again:(确认输入密钥口令)
+id_rsa是私钥（保密） id_rsa.pub是公钥（公开）
+
+14、
+
+15、
