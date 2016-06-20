@@ -59,7 +59,7 @@ $ git reset --hard HEAD^
 4）HEAD~100 表示100个版本
 5）回退到指定版本号 git reset --hard 版本号
 如果回退之后还想恢复到最新版本，后添加最新版本号
-$ git reset --hard b1f19dcf3e83436b13b00aee9dc7b59d103f3f8b（版本号没必要写全，前几位就可以了，git会自动去找）
+$ git reset --hard b1f19dcf3e（版本号没必要写全，前几位就可以了，git会自动去找）
 
 9、查看每次使用的命令
 $ git reflog
