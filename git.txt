@@ -90,7 +90,7 @@ Enter same passphrase again:(确认输入密钥口令)
 id_rsa是私钥（保密） id_rsa.pub是公钥（公开）
 
 14、把本地仓库与远程仓库进行关联
-$ 
+$ git remote add origin https://github.com/321dh/lijinhe.git
 
 15、把本地库内容推送到远程库上
 $ git push -u origin master
