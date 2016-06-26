@@ -8,12 +8,54 @@ U：update，从服务器更新
 R：replace，从服务器替换
 I：ignored，忽略
 
-git操作命令
-1、设置姓名和Email
+git简介
+git(读音为/gɪt/)是一款免费、开源的分布式版本控制系统。
+git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。
+git分布式版本控制系统与svn集中式版本控制系统的区别：
+一、优点
+	1、离线工作；
+	2、适合分布式开发，强调个体，公共服务器压力和数据量较小；
+	3、任意两个开发者之间可以很容易的解决冲突。
+二、缺点
+	1、不符合常规思维，学习周期比较长；
+	2、整个仓库克隆，代码保密性差。
+
+基本的git工作流程如下：
+1、在工作目录中修改文件；
+2、暂存文件，将文件的快照放入暂存区域；
+3、提交更新，找到暂存区域的文件，将快照永久性存储到git仓库目录。
+
+git操作及命令
+1、安装
+1）在Linux上安装
+	如果你想在 Linux 上用二进制安装程序来安装 git，可以使用发行版包含的基础软件包管理工具来安装
+	$ sudo yum install git
+2）在Windows上安装
+	在 Windows 上安装 git 也有几种安装方法。 官方版本可以在 git 官方网站下载。 打开 http://git-scm.com/download/win，下载会自动开始。 要注意这是一个名为 Git for Windows的项目（也叫做 msysGit），和 git 是分别独立的项目；更多信息请访问 http://msysgit.github.io/。
+	另一个简单的方法是安装 GitHub for Windows。 该安装程序包含图形化和命令行版本的 git。 它也能支持 Powershell，提供了稳定的凭证缓存和健全的 CRLF 设置。 稍后我们会对这方面有更多了解，现在只要一句话就够了，这些都是你所需要的。 你可以在 GitHub for Windows 网站下载，网址为 http://windows.github.com。
+3）在Mac上安装
+	在 Mac 上安装 git 有多种方式。 最简单的方法是安装 Xcode Command Line Tools。 Mavericks （10.9） 或更高版本的系统中，在 Terminal 里尝试首次运行 git 命令即可。 如果没有安装过命令行开发者工具，将会提示你安装。
+4）从源代码安装
+	如果你想从源码安装 git，需要安装 git 依赖的库：curl、zlib、openssl、expat，还有libiconv。 如果你的系统上有 yum （如 Fedora）或者 apt-get（如基于 Debian 的系统），可以使用以下命令之一来安装最小化的依赖包来编译和安装 Git 的二进制版：
+		$ sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+	为了能够添加更多格式的文档（如 doc, html, info），你需要安装以下的依赖包：
+		$ sudo yum install asciidoc xmlto docbook2x
+	当你安装好所有的必要依赖，你可以继续从几个地方来取得最新发布版本的 tar 包。 你可以从 Kernel.org 网站获取，网址为 https://www.kernel.org/pub/software/scm/git，或从 GitHub 网站上的镜像来获得，网址为 https://github.com/git/git/releases。 通常在 GitHub 上的是最新版本，但 kernel.org 上包含有文件下载签名，如果你想验证下载正确性的话会用到。
+	接着，编译并安装：
+	  $ tar -zxvf git-2.0.0.tar.gz
+	  $ cd git-2.0.0
+	  $ make configure
+	  $ ./configure --prefix=/usr
+	  $ make all doc info
+	  $ sudo make install install-doc install-html install-info
+	完成后，你可以使用 Git 来获取 Git 的升级：
+	  $ git clone git://git.kernel.org/pub/scm/git/git.git
+
+2、设置姓名和Email
 $ git config --global user.name "Jorly"
 $ git config --global user.email "lijinhe@321dh.com"
 
-2、设置行尾首选项
+3、设置行尾首选项
 	1)Unix/Mac 用户：
 		$ git config --global core.autocrlf input
 		$ git config --global core.safecrlf true
@@ -22,14 +64,13 @@ $ git config --global user.email "lijinhe@321dh.com"
 		$ git config --global core.autocrlf true
 		$ git config --global core.safecrlf true
 
-3、创建代码仓库
+4、创建代码仓库
 $ mkdir gitproject
 $ cd gitproject
 $ git init
-
 这时git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，可通过ls -ah查看。
 
-4、添加文件并提交到git仓库
+5、添加文件并提交到git仓库
 $ touch git.txt
 $ vi git.txt
 添加以下内容并用wq保存：
@@ -38,21 +79,21 @@ $ vi git.txt
 添加文件到仓库暂存区（如果不add添加，在提交时将不会被提交）	
 $ git add git.txt
 把文件提交到git仓库
-$ git commit -m "添加一个git命令文件"
+$ git commit -m "添加了一个git文件"
 
-5、检查仓库的状态
+6、检查仓库的状态
 $ git status
 
-6、比较文件不同
+7、比较文件不同
 $ git diff git.txt
 
-7、查看log日志
+8、查看log日志
 $ git log
 如果感觉输出信息太多，可用
 $ git log --pretty=oneline
 
-8、回到某个版本
-$ git reset --hard HEAD^
+9、回到某个版本
+$ git reset --hard HEAD
 1）HEAD 表示当前版本
 2）HEAD^ 表示上个版本
 3）HEAD^^ 表示上上个版本
@@ -61,13 +102,13 @@ $ git reset --hard HEAD^
 如果回退之后还想恢复到最新版本，后添加最新版本号
 $ git reset --hard b1f19dcf3e（版本号没必要写全，前几位就可以了，git会自动去找）
 
-9、查看每次使用的命令
+10、查看每次使用的命令
 $ git reflog
 
-10、丢弃工作区的修改
+11、丢弃工作区的修改
 $ git checkout -- 文件名（没有--，就变成了“切换到另一个分支”的命令）
 
-11、把暂存区的修改回退到工作区
+12、把暂存区的修改回退到工作区
 $ git reset HEAD readme.txt
 
 撤销修改小结
@@ -75,12 +116,12 @@ $ git reset HEAD readme.txt
 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
 
-12、从版本库中删除文件
+13、从版本库中删除文件
 $ git rm test.txt
 $ git commit -m "remove test.txt"
 rm 只是把文件从本地删除，如果误删则用git checkout -- test.txt进行恢复。
 
-13、创建SSH Key
+14、创建SSH Key
 $ ssh-keygen -t rsa -C "lijinhe@321dh.com"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/Jorly/.ssh/id_rsa):（确认密钥存储位置）
@@ -89,10 +130,52 @@ Enter passphrase (empty for no passphrase):(输入密钥口令)
 Enter same passphrase again:(确认输入密钥口令)
 id_rsa是私钥（保密） id_rsa.pub是公钥（公开）
 
-14、把本地仓库与远程仓库进行关联
+15、把本地仓库与远程仓库进行关联
 $ git remote add origin https://github.com/321dh/lijinhe.git
 
-15、把本地库内容推送到远程库上
+16、把本地库内容推送到远程库上
 $ git push -u origin master
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令:
+$ git push origin master
+把本地master分支的最新修改推送至GitHub。
 
-16、
+17、从远程库克隆
+$ git clone https://github.com/321dh/lijinhe.git
+$ cd gitproject
+$ ls
+git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+
+18、创建分支
+$ git branch dev
+
+19、切换分支
+$ git checkout dev
+
+20、创建分支并切换分支
+$ git checkout -b dev
+git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+
+21、查看分支
+$ git branch
+git branch命令会列出所有分支，当前分支前面会标一个*号
+
+22、切换回master分支
+$ git checkout master
+
+23、合并指定分支到当前分支
+$ git merge dev
+
+24、删除分支
+$ git branch -d dev
+
+25、解决冲突
+<<<<<<< HEAD
+Creating a new branch is quick & simple.
+=======
+Creating a new branch is quick AND simple.
+>>>>>>> dev
+Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存：
+
+26、用git log --graph命令可以看到分支合并图
+$ git log --graph --pretty=oneline --abbrev-commit
+
