@@ -176,7 +176,7 @@ $ git branch -d dev
 Creating a new branch is quick & simple.
 =======
 Creating a new branch is quick AND simple.
->>>>>>> dev
+>>>>>>> abba5eb045e96c637e5613481c52ebec8a6f5f00
 Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改后保存即可。
 
 26、用git log --graph命令可以看到分支合并图
