@@ -109,7 +109,7 @@ $ git add git.txt
 把文件提交到git仓库
 $ git commit -m "添加了一个git文件"
 
-6、检查仓库的状态
+6、检查当前文件状态
 $ git status
 
 7、比较文件不同
@@ -167,11 +167,16 @@ $ git push -u origin master
 $ git push origin master
 把本地master分支的最新修改推送至GitHub。
 
-17、克隆远程的仓库
+17、远程仓库
+1）克隆仓库
 $ git clone https://github.com/321dh/lijinhe.git
 $ cd gitproject
 $ ls
 git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+
+2）克隆仓库并自定义本地仓库名称
+$ git clone https://github.com/libgit2/libgit2 mylibgit
+这将执行克隆时将本地创建的仓库名字变为 mylibgit。
 
 18、创建分支
 $ git branch dev
