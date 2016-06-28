@@ -112,6 +112,10 @@ $ git commit -m "添加了一个git文件"
 6、检查当前文件状态
 $ git status
 
+nothing to commit, working directory clean 说明工作目录很干净
+Untracked files 未跟踪的文件
+Changes to be committed 已暂存未提交
+
 7、比较文件不同
 $ git diff git.txt
 
