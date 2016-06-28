@@ -9,21 +9,29 @@ R：replace，从服务器替换
 I：ignored，忽略
 
 git简介
-git(读音为/gɪt/)是一款免费、开源的分布式版本控制系统。
-git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。
-git分布式版本控制系统与svn集中式版本控制系统的区别：
-一、优点
-	1、离线工作；
-	2、适合分布式开发，强调个体，公共服务器压力和数据量较小；
-	3、任意两个开发者之间可以很容易的解决冲突。
-二、缺点
-	1、不符合常规思维，学习周期比较长；
-	2、整个仓库克隆，代码保密性差。
-
+git(读音为/gɪt/)是一款免费、开源的分布式版本控制系统。git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。
+已提交表示数据已经安全的保存在本地数据库中（git仓库）。 
+已修改表示修改了文件，但还没保存到数据库中（工作目录）。 
+已暂存表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中（暂存区域）。
 基本的git工作流程如下：
 1、在工作目录中修改文件；
 2、暂存文件，将文件的快照放入暂存区域；
 3、提交更新，找到暂存区域的文件，将快照永久性存储到git仓库目录。
+
+git config配置
+1、/etc/gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 --system 选项的 git config 时，它会从此文件读写配置变量。
+2、~/.gitconfig 或 ~/.config/git/config 文件：只针对当前用户。 可以传递 --global 选项让 Git 读写此文件。
+3、当前使用仓库的 Git 目录中的 config 文件（就是 .git/config）：针对该仓库。
+
+git分布式版本控制系统与svn集中式版本控制系统的区别：
+git 和其它版本控制系统（如svn ）的主要差别在于git对待数据的方法是直接记录快照，而非差异比较。而其他版本控制系统，则是保存文件随时间逐步累积的差异。
+一、优点
+	1、离线工作，近乎所有操作都是本地执行；
+	2、适合分布式开发，强调个体，公共服务器压力和数据量较小；
+	3、对非线性开发模式的强力支持（允许成千上万个并行开发的分支）。
+二、缺点
+	1、不符合常规思维，学习周期比较长；
+	2、整个仓库克隆，代码保密性差。
 
 git操作及命令
 1、安装
@@ -51,27 +59,44 @@ git操作及命令
 	完成后，你可以使用 Git 来获取 Git 的升级：
 	  $ git clone git://git.kernel.org/pub/scm/git/git.git
 
-2、设置姓名和Email
+2、config配置
+设置姓名和邮箱
 $ git config --global user.name "Jorly"
 $ git config --global user.email "lijinhe@321dh.com"
+
+默认使用Emacs文本编辑器
+$ git config --global core.editor emacs
 
 让git显示颜色，让命令输出看起来更醒目
 $ git config --global color.ui true
 
-3、设置行尾首选项
+设置行尾首选项
 	1)Unix/Mac 用户：
 		$ git config --global core.autocrlf input
 		$ git config --global core.safecrlf true
 
 	2)Windows 用户：
 		$ git config --global core.autocrlf true
-		$ git config --global core.safecrlf true	
+		$ git config --global core.safecrlf true
+
+查看git所有配置
+$ git config --list
+
+检查git某一项配置（git config <key>）
+$ git config user.name
+
+3、获取帮助	
+$ git help <verb>
+$ git <verb> --help
+$ man git-<verb>
 
 4、创建代码仓库
 $ mkdir gitproject
 $ cd gitproject
+
+初始化仓库
 $ git init
-这时git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，可通过ls -ah查看。
+这时git就把仓库建好了，你会发现当前目录下多了一个.git的目录，可通过ls -ah查看。
 
 5、添加文件并提交到git仓库
 $ touch git.txt
@@ -142,7 +167,7 @@ $ git push -u origin master
 $ git push origin master
 把本地master分支的最新修改推送至GitHub。
 
-17、从远程库克隆
+17、克隆远程的仓库
 $ git clone https://github.com/321dh/lijinhe.git
 $ cd gitproject
 $ ls
